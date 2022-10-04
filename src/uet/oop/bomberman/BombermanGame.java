@@ -13,14 +13,15 @@ import uet.oop.bomberman.entities.Grass;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BombermanGame extends Application {
-    
+
     public static final int WIDTH = 20;
     public static final int HEIGHT = 15;
-    
+
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
@@ -59,25 +60,43 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-
-        createMap();
-
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
+        try {
+            createMap();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
-    * tao map.
-    */
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
+     * tao map.
+     */
+    public void createMap() throws IOException {
+        File file = new File("res\\levels\\Level1.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line = reader.readLine();
+        int widthMap = 31;
+        int heightMap = 13;
+        for (int i = 0; i < heightMap; i++) {
+            String line1 = reader.readLine();
+            for (int j = 0; j < widthMap; j++) {
                 Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
+                char s = line1.charAt(j);
+                if (s == '#') {
+                    object = new Wall(j, i, Sprite.wall.getFxImage());
+                } else if (s == '*') {
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
+                } else if (s == ' ') {
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
+                } else if (s == '1') {
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
+                } else if (s == '2') {
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
+                } else if (s == 'p') {
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
+                    Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+                    entities.add(bomberman);
+                } else {
+                    object = new Grass(j, i, Sprite.grass.getFxImage());
                 }
                 stillObjects.add(object);
             }

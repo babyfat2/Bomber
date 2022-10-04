@@ -118,7 +118,7 @@ public class Sprite {
 	
 	//ALL
 	public static Sprite mob_dead1 = new Sprite(DEFAULT_SIZE, 15, 0, SpriteSheet.tiles, 16, 16);
-	public static Sprite mob_dead2 = new Sprite(DEFAULT_SIZE, 15, 1, SpriteSheet.tiles, 16, 16);
+	public static 	Sprite mob_dead2 = new Sprite(DEFAULT_SIZE, 15, 1, SpriteSheet.tiles, 16, 16);
 	public static Sprite mob_dead3 = new Sprite(DEFAULT_SIZE, 15, 2, SpriteSheet.tiles, 16, 16);
 	
 	/*
@@ -184,7 +184,16 @@ public class Sprite {
 	public static Sprite powerup_detonator = new Sprite(DEFAULT_SIZE, 4, 10, SpriteSheet.tiles, 16, 16);
 	public static Sprite powerup_bombpass = new Sprite(DEFAULT_SIZE, 5, 10, SpriteSheet.tiles, 16, 16);
 	public static Sprite powerup_flamepass = new Sprite(DEFAULT_SIZE, 6, 10, SpriteSheet.tiles, 16, 16);
-	
+
+	/**
+	 * khoi tao doi tuong.
+	 * @param size : kich co
+	 * @param x : vi tri ngang trong anh lon.
+	 * @param y : vi tri doc trong anh lon
+	 * @param sheet : anh lon.
+	 * @param rw : chieu rong.
+	 * @param rh : chieu cao.
+	 */
 	public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
 		SIZE = size;
 		_pixels = new int[SIZE * SIZE];
