@@ -7,12 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,15 +84,19 @@ public class BombermanGame extends Application {
                     object = new Wall(j, i, Sprite.wall.getFxImage());
                 } else if (s == '*') {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
+                    Entity Brick = new Brick(j,i,Sprite.brick.getFxImage());
+                    entities.add(Brick);
                 } else if (s == ' ') {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
                 } else if (s == '1') {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
+                    Entity Balloom = new Balloom(j,i,Sprite.balloom_left1.getFxImage());
+                    entities.add (Balloom);
                 } else if (s == '2') {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
                 } else if (s == 'p') {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
-                    Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+                    Entity bomberman = new Bomber(j, i, Sprite.player_right.getFxImage());
                     entities.add(bomberman);
                 } else {
                     object = new Grass(j, i, Sprite.grass.getFxImage());
